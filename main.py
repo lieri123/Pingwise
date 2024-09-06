@@ -15,3 +15,9 @@ for r in range(2, sheet.max_row + 1):
         unpaidMembers[name] = email
 
 
+smtpObj = smtplib.SMTP("smtp.example.com", 587) #placeholder smtp. Change according to email provider 
+smtpObj.ehlo()
+smtpObj.starttls()
+smtpObj.login('my_email_address@example.com', sys.argv[1])# placeholder email address 
+
+
