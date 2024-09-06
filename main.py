@@ -18,6 +18,17 @@ for r in range(2, sheet.max_row + 1):
 smtpObj = smtplib.SMTP("smtp.example.com", 587) #placeholder smtp. Change according to email provider 
 smtpObj.ehlo()
 smtpObj.starttls()
-smtpObj.login('my_email_address@example.com', sys.argv[1])# placeholder email address 
+smtpObj.login('example_email_address@example.com', sys.argv[1])# placeholder email address 
+
+for name, email in unpaidMembers.items():
+    body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not paid dues for %s. Please make this payment as soon as possible. Thank you!'" % (latestMonth, name, latestMonth)
+    print('Sending email to %s...' % email)
+    sendmailStatus = smtpObj.sendmail('example_email_address@example.com', email, body) #placeholder email address 
+
+    if sendmailStatus != {}:
+        print('There was a problem sending email to %s: %s' % (email, sendmailStatus))
+        
+smtpObj.quit()
+
 
 
